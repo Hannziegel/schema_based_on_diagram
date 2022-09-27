@@ -1,9 +1,11 @@
+CREATE DATABASE clinic_db;
+
 CREATE TABLE "patients"(
     "id" INTEGER NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "date_of_birth" DATE NOT NULL,
-    PRIMARY KEY (id)
-);
+   );
+   
 ALTER TABLE
     "patients" ADD PRIMARY KEY("id");
     
@@ -12,8 +14,7 @@ CREATE TABLE "medical_histories"(
     "admitted_at" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     "patient_id" INTEGER  NOT NULL  REFERENCES patients(id),,
     "status" VARCHAR(255) NOT NULL,
-     PRIMARY KEY (id)
-);
+    );
 ALTER TABLE
     "medical_histories" ADD PRIMARY KEY("id");
 CREATE TABLE "invoices"(
@@ -22,7 +23,7 @@ CREATE TABLE "invoices"(
     "generated_at" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     "payed_at" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     "medical_history_id" INTEGER NOT NULL REFERENCES medical_histories(id),
-    PRIMARY KEY (id)
+    
 );
 ALTER TABLE
     "invoices" ADD PRIMARY KEY("id");
@@ -39,10 +40,9 @@ CREATE TABLE "invoice_items"(
 CREATE TABLE diagnosis(
       treat_id INTEGER NOT NULL  REFERENCES treatments(id),
       med_hist_id INTEGER NOT NULL   REFERENCES medical_histories(id),
-      PRIMARY KEY( treat_id, med_hist_id) UNIQUE
+      PRIMARY KEY( treat_id, med_hist_id)
 );
-ALTER TABLE
-    "invoice_items" ADD PRIMARY KEY("id");
+
 CREATE TABLE "treatments"(
     "id" INTEGER NOT NULL,
     "type" VARCHAR(255) NOT NULL,
