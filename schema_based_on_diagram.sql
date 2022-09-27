@@ -58,3 +58,11 @@ ALTER TABLE
     "invoice_items" ADD CONSTRAINT "invoice_items_invoice_id_foreign" FOREIGN KEY("invoice_id") REFERENCES "invoices"("id");
 ALTER TABLE
     "invoices" ADD CONSTRAINT "invoices_medical_history_id_foreign" FOREIGN KEY("medical_history_id") REFERENCES "medical_histories"("id");
+    
+--ADDING FK INDEXES
+CREATE INDEX patient_medic_history_id_idx ON medical_histories(patient_id);
+CREATE INDEX invoice_medic_history_invoice_idx ON invoices(medical_history_id);
+CREATE INDEX invoice_items_id_idx ON invoice_items(invoice_id);
+CREATE INDEX treatment_id_idx ON invoice_items(treatment_id);
+CREATE INDEX treatments_id_index_pres_treat_idx  ON prescribed_treatments(treatments_id);
+CREATE INDEX medi_history_prescribed_treatments_idx ON prescribed_treatments(medical_history_id);
